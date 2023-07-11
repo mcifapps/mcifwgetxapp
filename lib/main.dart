@@ -5,7 +5,7 @@ import 'package:mcifwgetxapp/app/themes/theme_colors.dart';
 import 'package:mcifwgetxapp/app/utils/dependency_injection.dart';
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() { 
   //app
   runApp(
     GetMaterialApp(
