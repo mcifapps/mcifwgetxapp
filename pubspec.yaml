@@ -1,0 +1,38 @@
+name: mcifwgetxapp
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  cached_network_image: 3.2.3
+  connectivity_plus: ^4.0.1
+  flutter: 
+    sdk: flutter
+  simple_barcode_scanner: ^0.0.8
+  select_searchable_list: ^0.1.05
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  fonts: 
+    - family: Poppins Bold
+      fonts: 
+        - asset: assets/fonts/Poppins-Bold.ttf
+    - family: Poppins Medium
+      fonts: 
+        - asset: assets/fonts/Poppins-Medium.ttf
+    - family: Poppins Regular
+      fonts: 
+        - asset: assets/fonts/Poppins-Regular.ttf
+  assets:
+    - assets/images/tour.png
+    - assets/images/scanner.png
+  uses-material-design: true
+

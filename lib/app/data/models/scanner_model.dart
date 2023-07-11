@@ -1,0 +1,25 @@
+class ScannerModel {
+  String? mcs_ana_insertedbc;
+  String? mcs_ana_code;
+  String? mcs_ana_desc;
+
+  ScannerModel({
+    this.mcs_ana_insertedbc,
+    this.mcs_ana_code,
+    this.mcs_ana_desc,
+  });
+
+  ScannerModel.fromJson(Map<String, dynamic> json) {
+    mcs_ana_insertedbc  = json['mcs_ana_insertedbc'];
+    mcs_ana_code        = json['mcs_ana_code'];
+    mcs_ana_desc        = json['mcs_ana_desc'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['mcs_ana_insertedbc'] = mcs_ana_insertedbc;
+    data['mcs_ana_code']       = mcs_ana_code;
+    data['mcs_ana_desc']       = mcs_ana_desc;
+    return data;
+  }
+}
