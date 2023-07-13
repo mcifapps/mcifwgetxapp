@@ -115,14 +115,21 @@ class TourView extends GetView<TourController> {
                             child:
 
                               ListTile(
-                                leading:  Icon(Icons.directions_bus),
+                                leading:  Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              (controller.tours[index].emp_tra_load.toString() == '*') ? Icon(Icons.access_time) : (
+                                                (controller.tours[index].emp_tra_load.toString() == '***') ? Icon(Icons.drive_eta) : Text("")
+                                              ),
+                                            ],
+                                          ),   
                                 trailing: Icon(Icons.view_list),
                                 title: Text(
                                   controller.tours[index].emp_tra_date_tour.toString(),
                                   style: TextStyle(fontSize: 18),
                                 ),
                                 subtitle: Text(
-                                  controller.tours[index].emp_tra_id.toString(),
+                                  "Giro:" + controller.tours[index].emp_tra_id.toString() + " - Zona:" + controller.tours[index].emp_tra_zone.toString(),
                                   style: TextStyle(fontSize: 14),
                                 ),
                               ),

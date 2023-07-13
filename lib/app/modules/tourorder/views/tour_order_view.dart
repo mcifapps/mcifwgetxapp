@@ -80,7 +80,14 @@ class TourOrderView extends GetView<TourOrderController> {
                             child: 
                             
                               ListTile(
-                                leading:  Icon(Icons.content_paste),
+                                leading:  Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              (controller.tourorders[index].ord_h_load.toString() == '*') ? Icon(Icons.access_time) : (
+                                                (controller.tourorders[index].ord_h_load.toString() == '***') ? Icon(Icons.drive_eta) : Text("")
+                                              ),
+                                            ],
+                                          ),   
                                 trailing: Icon(Icons.view_list),
                                 title: Text(
                                   controller.tourorders[index].ord_h_number.toString(),

@@ -81,19 +81,37 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                             child: 
                             
                               ListTile(
-                                leading:  Icon(Icons.content_paste),
-                                trailing: Text(
-                                            "Qta. " + controller.tourorderrows[index].ord_r_qtaord.toString(),
-                                            style: TextStyle(fontSize: 15),
+                                //leading:  Icon(Icons.content_paste),
+                                leading: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              (controller.tourorderrows[index].mcs_ana_barcode1.toString() != '0') ? Icon(Icons.barcode_reader) : Icon(Icons.lock),
+                                            ],
+                                          ),                                          
+                                trailing: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text(
+                                                "Qta. " + controller.tourorderrows[index].ord_r_qtaord.toString(),
+                                                style: TextStyle(fontSize: 16),
+                                              ),
+                                              //( controller.tourorderrows[index].ord_r_flag_status.toString() == 'FOS') ? Text("") : Text(""),
+                                              ( controller.tourorderrows[index].ord_r_flag_status.toString() == 'DEL') ? Icon(Icons.clear) : (
+                                                ( controller.tourorderrows[index].ord_r_flag_status.toString() == 'STR') ? Icon(Icons.access_time) : (
+                                                  ( controller.tourorderrows[index].ord_r_flag_status.toString() == 'CAR') ? Icon(Icons.done) : Text("")
+                                                )
+                                              ),                                                                                            
+                                                //( controller.tourorderrows[index].ord_r_flag_status.toString() == 'CAR') ? Icon(Icons.done) : Text(""),                                              
+                                            ],
                                           ),
-                                title: Text(
-                                  controller.tourorderrows[index].ord_r_code.toString(),
-                                  style: TextStyle(fontSize: 18),
-                                ),
+                                title:    Text(
+                                            controller.tourorderrows[index].ord_r_code.toString(),
+                                            style: TextStyle(fontSize: 14),
+                                          ),
                                 subtitle: Text(
-                                  controller.tourorderrows[index].ord_r_aticle.toString(),
-                                  style: TextStyle(fontSize: 10),
-                                ),
+                                            controller.tourorderrows[index].ord_r_aticle.toString(),
+                                            style: TextStyle(fontSize: 12),
+                                          ), 
                               ),                            
                             
                             //Text(
