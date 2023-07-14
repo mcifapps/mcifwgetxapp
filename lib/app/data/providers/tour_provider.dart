@@ -78,4 +78,28 @@ class TourProvider extends GetConnect {
     return tourorders;
   }  
 
+  Future<List<TourOrderRowModel>> getTourOrderRowsBarcode(int iTourOrderRow, String sBarcode) async {
+    var httpsUri = Uri(
+            scheme:   URL_SCHEME,
+            host:     URL_HOST,
+            path:     URL_PREFIX + '/order_rows/empDetailsBarcodeFA.php'
+    );
+
+    final response = await client.post(
+      httpsUri,
+      body: {
+        //'id': widget.student!.id.toString(), // devo passare il parametro
+        'id': iTourOrderRow.toString(),
+        'barcode': sBarcode,
+      },
+    );
+
+    final items = json.decode(response.body).cast<Map<String, dynamic>>();
+    List<TourOrderRowModel> tourorders = items.map<TourOrderRowModel>((json) {
+      return TourOrderRowModel.fromJson(json);
+    }).toList();
+
+    return tourorders;
+  }  
+
 }

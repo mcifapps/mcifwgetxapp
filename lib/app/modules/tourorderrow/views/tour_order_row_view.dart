@@ -9,7 +9,70 @@ import 'package:mcifwgetxapp/app/themes/theme_colors.dart';
 //import 'package:mcifwgetxapp/app/utils/constants.dart';
 //import 'package:mcifwgetxapp/app/routes/app_pages.dart';
 
+import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
+
 class TourOrderRowView extends GetView<TourOrderRowController> {
+
+  Future<void> _showMyDialog(BuildContext context, String sTitle, String sBody, String sButton) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        print(sTitle);
+        print(sBody);
+        print(sButton);
+        return AlertDialog(
+          title: new Text(sTitle),
+          content: new Text(sBody),
+          actions: <Widget>[
+            TextButton(
+              child: new Text(sButton),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showMyScanner(BuildContext context, String ord_r_id, String mcs_ana_barcode1) async {
+
+    String result = '';
+
+    var res = await Navigator.push(
+        context,
+
+        MaterialPageRoute(
+            builder: (context) => const SimpleBarcodeScannerPage(),
+        ));
+
+        if (res is String) {
+            result = res;
+            var param1 = result.toString();
+            var param2 = ord_r_id.toString();
+            var param3 = mcs_ana_barcode1.toString();
+            //
+            print(param1);
+            print(param2);
+            print(param3);
+
+            (param1 == param3) 
+            ? 
+            _showMyDialog(context, 'Corretto!','Verifica barcode effettuata con successo.','Procedi!')
+
+            //qui possiamo andare sulla pagina che ci permette la conferma della quantità da prelevare
+            : 
+            _showMyDialog(context, 'Errore','Il barcode ' + param1 + ' non coincide con il barcode del prodotto ' + param3 + '.','Annulla!');
+
+            //Get.toNamed(Routes.SCANNER, arguments: {
+            //    // 'mcs_ana_insertedbc': '9000000000001'
+            //    'mcs_ana_insertedbc': param1
+            //});
+        }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -32,11 +95,22 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                   physics: const ScrollPhysics(),
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      //onTap: () {
+                      onTap: () {
                       //  Get.toNamed(Routes.DETAILS, arguments: {
                       //    'emp_tra_id': controller.tourorderrows[index].emp_tra_id
                       //  });
-                      //},
+                        // ignore: unused_local_variable
+                        (controller.tourorderrows[index].mcs_ana_barcode1.toString() != '0') ? 
+                        {
+                        //print(controller.tourorderrows[index].ord_r_id.toString()) 
+                        _showMyScanner(context, controller.tourorderrows[index].ord_r_id.toString(), controller.tourorderrows[index].mcs_ana_barcode1.toString())
+                        }
+                        : 
+                        { 
+                        //print("")
+                        _showMyDialog(context, 'Attenzione','Articolo senza barcode, censirlo in anagrafica.','Ho capito!')
+                        };
+                      },
                       child: Stack(
                         alignment: Alignment.bottomLeft,
                         children: [
