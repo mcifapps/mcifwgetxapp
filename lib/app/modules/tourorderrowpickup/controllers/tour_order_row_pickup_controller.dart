@@ -3,7 +3,7 @@ import 'package:mcifwgetxapp/app/data/models/tour_order_row_model.dart';
 
 import 'package:mcifwgetxapp/app/data/providers/tour_provider.dart';
 
-class TourOrderRowController extends GetxController {
+class TourOrderRowPickupController extends GetxController {
   int ordId = Get.arguments['ord_h_number'] ?? 0;
   int rowId = Get.arguments['ord_r_id'] ?? 0;
 
@@ -15,12 +15,13 @@ class TourOrderRowController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    fetchTourOrderRows();
+    fetchTourOrderRowsPickup();
   }
 
-  void fetchTourOrderRows() async {
+  
+  void fetchTourOrderRowsPickup() async {
 
-    var results = await tourProvider.getTourOrderRows(ordId);
+    var results = await tourProvider.getTourOrderRowsPickup(rowId);
 
     print(ordId.toString());
     print(rowId.toString());
@@ -33,4 +34,14 @@ class TourOrderRowController extends GetxController {
     }
     isLoading.value = false;
   }
+
+  void onConfirmSetPickup(ord_h_number, ord_r_id) async{
+
+    //se non hai un builder puoi richiamare la funzione con AWAIT per aspettare la funzione asincrona
+    //List<ScannerMessageModel> message = await scannerProvider.setProductFromBarcode(mcs_ana_insertedbc.text, mcs_ana_code.text);
+
+    print(ord_h_number);
+    print(ord_r_id);
+  }  
+
 }

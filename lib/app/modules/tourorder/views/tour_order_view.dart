@@ -33,7 +33,8 @@ class TourOrderView extends GetView<TourOrderController> {
                     return GestureDetector(
                       onTap: () {
                         Get.toNamed(Routes.TOURORDERROW, arguments: {
-                          'ord_h_number': controller.tourorders[index].ord_h_number
+                          'ord_h_number': controller.tourorders[index].ord_h_number,
+                          'ord_r_id': 0
                         });
                       },
                       child: Stack(

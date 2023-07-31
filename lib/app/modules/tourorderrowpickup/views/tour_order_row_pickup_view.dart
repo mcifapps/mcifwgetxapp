@@ -2,17 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:mcifwgetxapp/app/modules/tourorder/controllers/tour_order_controller.dart';
-import 'package:mcifwgetxapp/app/modules/tourorderrow/controllers/tour_order_row_controller.dart';
+//import 'package:mcifwgetxapp/app/modules/tourorderrow/controllers/tour_order_row_controller.dart';
+import 'package:mcifwgetxapp/app/modules/tourorderrowpickup/controllers/tour_order_row_pickup_controller.dart';
 import 'package:mcifwgetxapp/app/routes/app_pages.dart';
 import 'package:mcifwgetxapp/app/themes/app_text_theme.dart';
 import 'package:mcifwgetxapp/app/themes/theme_colors.dart';
 //import 'package:mcifwgetxapp/app/utils/constants.dart';
 //import 'package:mcifwgetxapp/app/routes/app_pages.dart';
 
-import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
+//import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
-class TourOrderRowView extends GetView<TourOrderRowController> {
+class TourOrderRowPickupView extends GetView<TourOrderRowPickupController> {
 
+/*
   Future<void> _showMyDialog(BuildContext context, String sTitle, String sBody, String sButton) async {
     return showDialog<void>(
       context: context,
@@ -68,9 +70,9 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
             ? 
             //_showMyDialog(context, 'Corretto!','Verifica barcode effettuata con successo.','Procedi!')
             //qui possiamo andare sulla pagina che ci permette la conferma della quantità da prelevare
-            Get.toNamed(Routes.TOURORDERROWPICKUP, arguments: {
-              'ord_h_number': int.parse(param4),
-              'ord_r_id': int.parse(param2)
+            Get.toNamed(Routes.TOURORDERROW, arguments: {
+              'ord_h_number': param4,
+              'ord_r_id': param2
             })
             : 
             _showMyDialog(context, 'Errore','Il barcode ' + param1 + ' non coincide con il barcode del prodotto ' + param3 + '.','Annulla!')
@@ -81,6 +83,7 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
             //});
         }
   }
+*/
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +92,7 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
         appBar: AppBar(
           backgroundColor: ThemeColor.primaryGrey,
           title: Text(
-            'Dettaglio ordine',
+            'Conferma prelievo',
             style: poppinsBold(),
           ),
           elevation: 0,
@@ -105,41 +108,16 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                      //  Get.toNamed(Routes.DETAILS, arguments: {
-                      //    'emp_tra_id': controller.tourorderrows[index].emp_tra_id
-                      //  });
-                        // ignore: unused_local_variable
-                        (controller.tourorderrows[index].mcs_ana_barcode1.toString() != '0') ? 
-                        {
-                        //print(controller.tourorderrows[index].ord_r_id.toString()) 
-                        _showMyScanner(context, 
-                          controller.tourorderrows[index].ord_r_id.toString(), 
-                          controller.tourorderrows[index].mcs_ana_barcode1.toString(),
-                          controller.tourorderrows[index].ord_r_number.toString()
-                          )
-                        }
-                        : 
-                        { 
-                        //print("")
-                        _showMyDialog(context, 'Attenzione','Articolo senza barcode, censirlo in anagrafica.','Ho capito!')
-                        };
+                        print("");
                       },
                       child: Stack(
-                        alignment: Alignment.bottomLeft,
+                        //alignment: Alignment.bottomLeft,
+                        alignment: Alignment.bottomCenter,
                         children: [
                           ClipRRect(
                             borderRadius: const BorderRadius.all(
                               Radius.circular(6.0),
                             ),
-                            //child: CachedNetworkImage(
-                            //  //imageUrl:
-                            //  //    '$imageBaseUrl${controller.tourorderrows[index].backdropPath}',
-                            //  fit: BoxFit.cover,
-                            //  height: Get.height * 0.28,
-                            //  width: Get.width,
-                            //  errorWidget: (context, url, error) =>
-                            //      const Icon(Icons.error),
-                            //),
                           ),
                           Positioned(
                             bottom: 0,
@@ -163,6 +141,99 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                               ),
                             ),
                           ),
+
+                          Column(
+                            children: <Widget>[
+                            Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child:
+                              Text(
+                                controller.tourorderrows[index].ord_r_code.toString(),
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ),
+                            Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child:
+                              Text(
+                                controller.tourorderrows[index].ord_r_aticle.toString(),
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ),
+                            Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child:
+                              Text(
+                                "Qta. " + controller.tourorderrows[index].ord_r_qtaord.toString(),
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+
+                            /*
+                            Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child:
+
+                              DropDownTextField(
+                                textEditingController: controller.mcs_ana_code_c,
+                                //title: 'Category',
+                                hint: 'Seleziona articolo',
+                                options: controller.mapProductsForDrillDown, //
+                                //selectedOptions: _selectedCategoryValue,
+                                decoration: InputDecoration(labelText: 'Articolo'),   
+                                style: TextStyle(color: Colors.black,fontSize: 12),
+                                onChanged: (selectedIds) {
+                                  //setState(() => selectedIds); // a cosa serve impostare lo stato
+                                  print(selectedIds);
+                                },
+                                // style: const TextStyle(
+                                //   fontSize: 16.0,
+                                //   color: Colors.red,
+                                // ),
+                              ),
+                            ),
+                            */
+
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                              child: 
+                                ElevatedButton(
+                                  child: Text('Preleva'),
+                                  //color: Colors.blue,
+                                  //textColor: Colors.white,
+                                  onPressed: () {
+                                      //_onConfirm(context, widget.mcs_ana_insertedbc, widget.mcs_ana_code);
+                                      controller.onConfirmSetPickup(
+                                          controller.tourorderrows[index].ord_r_number.toString(), 
+                                          controller.tourorderrows[index].ord_r_id.toString()
+                                      );
+/*
+                                      final snackBar = SnackBar(
+                                        content: const Text('Prodotto prelevato.'),
+                                        action: SnackBarAction(
+                                          label: 'Chiudi',
+                                          onPressed: () {
+                                            // Some code to undo the change.
+                                          },
+                                        ),
+                                      );
+                                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+*/
+
+                                      Get.toNamed(Routes.TOURORDERROW, arguments: {
+                                        'ord_h_number': controller.tourorderrows[index].ord_r_number,
+                                        'ord_r_id': 0
+                                      });               
+
+                                  },
+                                  //style: style,
+                                ),         
+                            ),                            
+                            
+                            ]
+                          ),
+
+/*
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: 
@@ -174,21 +245,14 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                                             children: [
                                               (controller.tourorderrows[index].mcs_ana_barcode1.toString() != '0') ? Icon(Icons.barcode_reader) : Icon(Icons.lock),
                                             ],
-                                          ),                                          
+                                          ),
                                 trailing: Column(
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Text(
                                                 "Qta. " + controller.tourorderrows[index].ord_r_qtaord.toString(),
                                                 style: TextStyle(fontSize: 16),
-                                              ),
-                                              //( controller.tourorderrows[index].ord_r_flag_status.toString() == 'FOS') ? Text("") : Text(""),
-                                              ( controller.tourorderrows[index].ord_r_flag_status.toString() == 'DEL') ? Icon(Icons.clear) : (
-                                                ( controller.tourorderrows[index].ord_r_flag_status.toString() == 'STR') ? Icon(Icons.access_time) : (
-                                                  ( controller.tourorderrows[index].ord_r_flag_status.toString() == 'CAR') ? Icon(Icons.done) : Text("")
-                                                )
-                                              ),                                                                                            
-                                                //( controller.tourorderrows[index].ord_r_flag_status.toString() == 'CAR') ? Icon(Icons.done) : Text(""),                                              
+                                              ),                                           
                                             ],
                                           ),
                                 title:    Text(
@@ -200,13 +264,10 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                                             style: TextStyle(fontSize: 12),
                                           ), 
                               ),                            
-                            
-                            //Text(
-                            //  controller.tourorderrows[index].ord_h_number.toString(),
-                            //  style: poppinsBold(color: ThemeColor.white),
-                            //  overflow: TextOverflow.ellipsis,
-                            //),
+
                           ),
+*/
+
                         ],
                       ),
                     );

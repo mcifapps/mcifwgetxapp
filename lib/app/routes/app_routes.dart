@@ -12,6 +12,7 @@ abstract class Routes {
   static const TOUR = _Paths.TOUR;
   static const TOURORDER = _Paths.TOURORDER;  
   static const TOURORDERROW = _Paths.TOURORDERROW;
+  static const TOURORDERROWPICKUP = _Paths.TOURORDERROWPICKUP;
 
   static const SCANNER = _Paths.SCANNER;
   }
@@ -25,6 +26,7 @@ abstract class _Paths {
   static const TOUR = '/tour';
   static const TOURORDER = '/tourorder';    
   static const TOURORDERROW = '/tourorderrow';    
+  static const TOURORDERROWPICKUP = '/tourorderrowpickup';
 
   static const SCANNER = '/scanner';
 }
