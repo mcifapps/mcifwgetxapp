@@ -67,7 +67,7 @@ class TourView extends GetView<TourController> {
                     //controller.update(); //provo a fare un aggiornamento forzato da qui quando passo dal Drawer
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(Routes.TOURORDER, arguments: {
+                        Get.offAndToNamed(Routes.TOURORDER, arguments: {
                           'emp_tra_id': controller.tours[index].emp_tra_id
                         });
                       },

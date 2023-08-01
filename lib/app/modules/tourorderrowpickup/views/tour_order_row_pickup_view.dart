@@ -220,7 +220,7 @@ class TourOrderRowPickupView extends GetView<TourOrderRowPickupController> {
                                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
 */
 
-                                      Get.toNamed(Routes.TOURORDERROW, arguments: {
+                                      Get.offAndToNamed(Routes.TOURORDERROW, arguments: {
                                         'ord_h_number': controller.tourorderrows[index].ord_r_number,
                                         'ord_r_id': 0
                                       });               

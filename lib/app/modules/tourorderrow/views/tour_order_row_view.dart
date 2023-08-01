@@ -68,10 +68,21 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
             ? 
             //_showMyDialog(context, 'Corretto!','Verifica barcode effettuata con successo.','Procedi!')
             //qui possiamo andare sulla pagina che ci permette la conferma della quantità da prelevare
-            Get.toNamed(Routes.TOURORDERROWPICKUP, arguments: {
+
+            //Get.off(Routes.TOURORDERROWPICKUP, arguments: {
+            //  'ord_h_number': int.parse(param4),
+            //  'ord_r_id': int.parse(param2)
+            //})
+
+            Get.offAndToNamed(Routes.TOURORDERROWPICKUP, arguments: {
               'ord_h_number': int.parse(param4),
               'ord_r_id': int.parse(param2)
             })
+
+            //Get.toNamed(Routes.TOURORDERROWPICKUP, arguments: {
+            //  'ord_h_number': int.parse(param4),
+            //  'ord_r_id': int.parse(param2)
+            //})
             : 
             _showMyDialog(context, 'Errore','Il barcode ' + param1 + ' non coincide con il barcode del prodotto ' + param3 + '.','Annulla!')
             ;

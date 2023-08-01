@@ -4,8 +4,15 @@ import 'package:mcifwgetxapp/app/modules/tourorderrow/controllers/tour_order_row
 class TourOrderRowBinding extends Bindings {
   @override
   void dependencies() {
+
     Get.lazyPut<TourOrderRowController>(
       () => TourOrderRowController(),
     );
+    
+    //devo rinizializzare il controller
+
+    //TourOrderRowController().fetchTourOrderRows();
+    //Get.put(TourOrderRowController(), permanent: false);
+
   }
 }

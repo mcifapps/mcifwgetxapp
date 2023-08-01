@@ -32,7 +32,7 @@ class TourOrderView extends GetView<TourOrderController> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(Routes.TOURORDERROW, arguments: {
+                        Get.offAndToNamed(Routes.TOURORDERROW, arguments: {
                           'ord_h_number': controller.tourorders[index].ord_h_number,
                           'ord_r_id': 0
                         });

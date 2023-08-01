@@ -13,9 +13,21 @@ class TourOrderRowController extends GetxController {
   RxBool isLoading = true.obs;
 
   @override
+  void onInit(){
+
+    print("inizializzazione controller TourOrderRowController");
+    super.onInit();
+    print("fine inizializzazione controller TourOrderRowController");
+  }
+
+  @override
   void onReady() {
+
+    print("pronto  controller TourOrderRowController");
+    //onInit();
     super.onReady();
     fetchTourOrderRows();
+    print("caricamento dati controller TourOrderRowController");
   }
 
   void fetchTourOrderRows() async {
