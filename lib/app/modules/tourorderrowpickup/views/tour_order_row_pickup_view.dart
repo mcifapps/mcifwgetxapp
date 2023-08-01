@@ -96,6 +96,21 @@ class TourOrderRowPickupView extends GetView<TourOrderRowPickupController> {
             style: poppinsBold(),
           ),
           elevation: 0,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.arrow_upward),
+              //tooltip: 'Show Snackbar',
+              onPressed: () {
+                //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                //    content: Text('This is a Appbar Icon example')));
+
+                Get.offAndToNamed(Routes.TOURORDERROW, arguments: {
+                  'ord_h_number': controller.ordId,
+                  'ord_r_id': 0
+                });                    
+              },
+            ),
+          ]
         ),
         body: controller.isLoading.value
             ? const Center(child: CircularProgressIndicator())

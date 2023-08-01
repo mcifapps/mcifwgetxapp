@@ -20,6 +20,21 @@ class TourOrderView extends GetView<TourOrderController> {
             style: poppinsBold(),
           ),
           elevation: 0,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.arrow_upward),
+              //tooltip: 'Show Snackbar',
+              onPressed: () {
+                //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                //    content: Text('This is a Appbar Icon example')));
+
+                //Get.offAndToNamed(Routes.TOURORDER, arguments: {
+                //  'emp_tra_id': controller.tourId
+                //});                
+
+              },
+            ),
+          ]                    
         ),
         body: controller.isLoading.value
             ? const Center(child: CircularProgressIndicator())

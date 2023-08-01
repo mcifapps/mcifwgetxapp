@@ -104,6 +104,21 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
             style: poppinsBold(),
           ),
           elevation: 0,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.arrow_upward),
+              //tooltip: 'Show Snackbar',
+              onPressed: () {
+                //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                //    content: Text('This is a Appbar Icon example')));
+
+                //Get.offAndToNamed(Routes.TOURORDER, arguments: {
+                //  'emp_tra_id': controller.tourId
+                //});                
+
+              },
+            ),
+          ]          
         ),
         body: controller.isLoading.value
             ? const Center(child: CircularProgressIndicator())
@@ -132,7 +147,7 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                         : 
                         { 
                         //print("")
-                        _showMyDialog(context, 'Attenzione','Articolo senza barcode, censirlo in anagrafica.','Ho capito!')
+                        _showMyDialog(context, 'Attenzione','Articolo già caricato o senza barcode (censirlo in anagrafica).','Ho capito!')
                         };
                       },
                       child: Stack(
