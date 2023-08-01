@@ -7,6 +7,8 @@ import 'package:mcifwgetxapp/app/data/models/tour_model.dart';
 import 'package:mcifwgetxapp/app/data/models/tour_order_model.dart';
 import 'package:mcifwgetxapp/app/data/models/tour_order_row_model.dart';
 
+import 'package:mcifwgetxapp/app/data/models/scanner_message_model.dart';
+
 import 'dart:convert';
 
 import 'package:http/http.dart' show Client;
@@ -125,5 +127,28 @@ class TourProvider extends GetConnect {
 
     return tourorders;
   }  
+
+  Future<List<ScannerMessageModel>> setTourOrderRowPickupFromBarcode(String ord_h_number, String ord_r_id) async {
+
+    var httpsUri = Uri(
+            scheme:   URL_SCHEME,
+            host:     URL_HOST,
+            path:     URL_PREFIX + '/order_rows/updateRowPickupFromBarcodeFA.php');
+
+    final response = await client.post(
+      httpsUri,
+      body: {
+        "ord_h_number": ord_h_number,
+        "ord_r_id":     ord_r_id
+      },
+    );
+
+    final items = json.decode(response.body).cast<Map<String, dynamic>>();
+    List<ScannerMessageModel> messages = items.map<ScannerMessageModel>((json) {
+      return ScannerMessageModel.fromJson(json);
+    }).toList();
+
+    return messages;
+  }
 
 }
