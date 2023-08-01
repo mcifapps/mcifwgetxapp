@@ -41,7 +41,7 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
     );
   }
 
-  Future<void> _showMyScanner(BuildContext context, String ord_r_id, String mcs_ana_barcode1, String ord_r_number) async {
+  Future<void> _showMyScanner(BuildContext context, String ord_r_id, String mcs_ana_barcode1, String ord_r_number, String ord_h_tra_id) async {
 
     String result = '';
 
@@ -58,11 +58,13 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
             var param2 = ord_r_id.toString();
             var param3 = mcs_ana_barcode1.toString();
             var param4 = ord_r_number.toString();
+            var param5 = ord_h_tra_id.toString();
             //
             print(param1);
             print(param2);
             print(param3);
             print(param4);
+            print(param5);
 
             (param1 == param3) 
             ? 
@@ -76,7 +78,8 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
 
             Get.offAndToNamed(Routes.TOURORDERROWPICKUP, arguments: {
               'ord_h_number': int.parse(param4),
-              'ord_r_id': int.parse(param2)
+              'ord_r_id': int.parse(param2),
+              'ord_h_tra_id': int.parse(param5),
             })
 
             //Get.toNamed(Routes.TOURORDERROWPICKUP, arguments: {
@@ -112,9 +115,9 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                 //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 //    content: Text('This is a Appbar Icon example')));
 
-                //Get.offAndToNamed(Routes.TOURORDER, arguments: {
-                //  'emp_tra_id': controller.tourId
-                //});                
+                Get.offAndToNamed(Routes.TOURORDER, arguments: {
+                  'emp_tra_id': controller.traId
+                });                
 
               },
             ),
@@ -141,7 +144,8 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                         _showMyScanner(context, 
                           controller.tourorderrows[index].ord_r_id.toString(), 
                           controller.tourorderrows[index].mcs_ana_barcode1.toString(),
-                          controller.tourorderrows[index].ord_r_number.toString()
+                          controller.tourorderrows[index].ord_r_number.toString(),
+                          controller.tourorderrows[index].ord_h_tra_id.toString(),
                           )
                         }
                         : 

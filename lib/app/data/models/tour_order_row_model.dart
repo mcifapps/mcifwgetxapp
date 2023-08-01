@@ -8,6 +8,7 @@ class TourOrderRowModel {
   int?    ord_r_id;
   String? mcs_ana_barcode1;
   String? mcs_ana_checkbc;
+  int?    ord_h_tra_id;
 
   TourOrderRowModel({
     this.ord_r_number,
@@ -19,6 +20,7 @@ class TourOrderRowModel {
     this.ord_r_id,
     this.mcs_ana_barcode1,    
     this.mcs_ana_checkbc,    
+    this.ord_h_tra_id,    
   });
 
   TourOrderRowModel.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,7 @@ class TourOrderRowModel {
     ord_r_id          = json['ord_r_id'];
     mcs_ana_barcode1  = json['mcs_ana_barcode1'];
     mcs_ana_checkbc   = json['mcs_ana_checkbc'];
+    ord_h_tra_id      = json['ord_h_tra_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -45,6 +48,7 @@ class TourOrderRowModel {
     data['ord_r_id']          = ord_r_id;
     data['mcs_ana_barcode1']  = mcs_ana_barcode1;
     data['mcs_ana_checkbc']   = mcs_ana_checkbc;
+    data['ord_h_tra_id']      = ord_h_tra_id;
 
     return data;
   }

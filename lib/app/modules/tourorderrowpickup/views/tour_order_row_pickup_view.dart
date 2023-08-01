@@ -106,7 +106,8 @@ class TourOrderRowPickupView extends GetView<TourOrderRowPickupController> {
 
                 Get.offAndToNamed(Routes.TOURORDERROW, arguments: {
                   'ord_h_number': controller.ordId,
-                  'ord_r_id': 0
+                  'ord_r_id': 0,
+                  'ord_h_tra_id': controller.traId,
                 });                    
               },
             ),
@@ -220,7 +221,7 @@ class TourOrderRowPickupView extends GetView<TourOrderRowPickupController> {
                                       //_onConfirm(context, widget.mcs_ana_insertedbc, widget.mcs_ana_code);
                                       controller.onConfirmSetPickup(
                                           controller.tourorderrows[index].ord_r_number.toString(), 
-                                          controller.tourorderrows[index].ord_r_id.toString()
+                                          controller.tourorderrows[index].ord_r_id.toString(),
                                       );
 /*
                                       final snackBar = SnackBar(
@@ -237,7 +238,8 @@ class TourOrderRowPickupView extends GetView<TourOrderRowPickupController> {
 
                                       Get.offAndToNamed(Routes.TOURORDERROW, arguments: {
                                         'ord_h_number': controller.tourorderrows[index].ord_r_number,
-                                        'ord_r_id': 0
+                                        'ord_r_id': 0,
+                                        'ord_h_tra_id': controller.tourorderrows[index].ord_h_tra_id,
                                       });               
 
                                   },

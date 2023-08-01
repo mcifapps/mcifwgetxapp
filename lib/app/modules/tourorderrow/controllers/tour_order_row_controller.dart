@@ -6,6 +6,7 @@ import 'package:mcifwgetxapp/app/data/providers/tour_provider.dart';
 class TourOrderRowController extends GetxController {
   int ordId = Get.arguments['ord_h_number'] ?? 0;
   int rowId = Get.arguments['ord_r_id'] ?? 0;
+  int traId = Get.arguments['ord_h_tra_id'] ?? 0;
 
   final TourProvider tourProvider = Get.find<TourProvider>();
   

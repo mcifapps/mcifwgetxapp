@@ -32,6 +32,7 @@ class TourOrderView extends GetView<TourOrderController> {
                 //  'emp_tra_id': controller.tourId
                 //});                
 
+                Get.offAndToNamed(Routes.TOUR);
               },
             ),
           ]                    
@@ -49,7 +50,8 @@ class TourOrderView extends GetView<TourOrderController> {
                       onTap: () {
                         Get.offAndToNamed(Routes.TOURORDERROW, arguments: {
                           'ord_h_number': controller.tourorders[index].ord_h_number,
-                          'ord_r_id': 0
+                          'ord_r_id': 0,
+                          'ord_h_tra_id': controller.tourorders[index].ord_h_tra_id,
                         });
                       },
                       child: Stack(
