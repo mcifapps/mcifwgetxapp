@@ -3,5 +3,5 @@ const apiKey        = '3f834ef77eaddfcaad9e5955dc3a6feb';
 const imageBaseUrl  = 'https://image.tmdb.org/t/p/original';
 
 const URL_HOST      = "192.168.1.13";
-const URL_PREFIX    = "/v60_mcif/phpfa";
+const URL_PREFIX    = "/v55_mcif/phpfa";
 const URL_SCHEME    = "http";
