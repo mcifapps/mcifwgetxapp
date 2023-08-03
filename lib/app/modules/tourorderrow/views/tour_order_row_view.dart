@@ -138,7 +138,7 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                       //    'emp_tra_id': controller.tourorderrows[index].emp_tra_id
                       //  });
                         // ignore: unused_local_variable
-                        (controller.tourorderrows[index].mcs_ana_barcode1.toString() != '0') ? 
+                        ( (controller.tourorderrows[index].mcs_ana_barcode1.toString() != '0') ) ? 
                         {
                         //print(controller.tourorderrows[index].ord_r_id.toString()) 
                         _showMyScanner(context, 
@@ -151,7 +151,7 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                         : 
                         { 
                         //print("")
-                        _showMyDialog(context, 'Attenzione','Articolo già caricato o senza barcode (censirlo in anagrafica).','Ho capito!')
+                        _showMyDialog(context, 'Attenzione','Articolo già elaborato o senza barcode (censirlo in anagrafica).','Ho capito!')
                         };
                       },
                       child: Stack(
