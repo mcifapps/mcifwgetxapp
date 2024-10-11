@@ -8,7 +8,8 @@ class TourOrderRowPickupController extends GetxController {
   int ordId = Get.arguments['ord_h_number'] ?? 0;
   int rowId = Get.arguments['ord_r_id'] ?? 0;
   int traId = Get.arguments['ord_h_tra_id'] ?? 0;
-  
+  int barId = Get.arguments['mcs_ana_barcode1'] ?? 0;
+
   final TourProvider tourProvider = Get.find<TourProvider>();
   
   RxList<TourOrderRowModel> tourorderrows = <TourOrderRowModel>[].obs;
@@ -16,17 +17,28 @@ class TourOrderRowPickupController extends GetxController {
 
   @override
   void onReady() {
+    print("pronto  controller TourOrderRowPickupController");
     super.onReady();
     fetchTourOrderRowsPickup();
+    print("caricamento dati controller TourOrderRowPickupController");
   }
 
   
   void fetchTourOrderRowsPickup() async {
 
-    var results = await tourProvider.getTourOrderRowsPickup(rowId);
+    var results = null;
+
+    if(rowId==0){
+      results = await tourProvider.getTourOrderRowsPickupWithBar(barId, ordId);
+    }
+    else{
+      results = await tourProvider.getTourOrderRowsPickup(rowId);
+    }
 
     print(ordId.toString());
     print(rowId.toString());
+    print(traId.toString());
+    print(barId.toString());
 
     // ignore: unnecessary_null_comparison
     if (results != null) {

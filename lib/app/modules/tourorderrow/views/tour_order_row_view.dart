@@ -71,28 +71,59 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
             //_showMyDialog(context, 'Corretto!','Verifica barcode effettuata con successo.','Procedi!')
             //qui possiamo andare sulla pagina che ci permette la conferma della quantità da prelevare
 
-            //Get.off(Routes.TOURORDERROWPICKUP, arguments: {
-            //  'ord_h_number': int.parse(param4),
-            //  'ord_r_id': int.parse(param2)
-            //})
-
             Get.offAndToNamed(Routes.TOURORDERROWPICKUP, arguments: {
               'ord_h_number': int.parse(param4),
               'ord_r_id': int.parse(param2),
               'ord_h_tra_id': int.parse(param5),
+              'mcs_ana_barcode1':int.parse(param1),
             })
 
-            //Get.toNamed(Routes.TOURORDERROWPICKUP, arguments: {
-            //  'ord_h_number': int.parse(param4),
-            //  'ord_r_id': int.parse(param2)
-            //})
             : 
             _showMyDialog(context, 'Errore','Il barcode ' + param1 + ' non coincide con il barcode del prodotto ' + param3 + '.','Annulla!')
             ;
-            //Get.toNamed(Routes.SCANNER, arguments: {
-            //    // 'mcs_ana_insertedbc': '9000000000001'
-            //    'mcs_ana_insertedbc': param1
-            //});
+        }
+  }
+
+  Future<void> _showMyScannerForAllOrder(BuildContext context, String ord_r_number, String ord_h_tra_id) async {
+
+    String result = '';
+
+    var res = await Navigator.push(
+        context,
+
+        MaterialPageRoute(
+            builder: (context) => const SimpleBarcodeScannerPage(),
+        ));
+
+        if (res is String) {
+            result = res;
+            var param1 = result.toString();
+            //var param2 = ord_r_id.toString();
+            //var param3 = mcs_ana_barcode1.toString();
+            var param4 = ord_r_number.toString();
+            var param5 = ord_h_tra_id.toString();
+            //
+            print(param1);
+            //print(param2);
+            //print(param3);
+            print(param4);
+            print(param5);
+
+            /*
+            (param1 == param3) 
+            ? 
+            */
+            Get.offAndToNamed(Routes.TOURORDERROWPICKUP, arguments: {
+              'ord_h_number': int.parse(param4),
+              'ord_r_id': 0,                        //int.parse(param2),
+              'ord_h_tra_id': int.parse(param5),
+              'mcs_ana_barcode1':int.parse(param1),
+            });
+            /*
+            : 
+            _showMyDialog(context, 'Errore','Il barcode ' + param1 + ' non coincide con il barcode del prodotto ' + param3 + '.','Annulla!')
+            ;
+            */
         }
   }
 
@@ -119,6 +150,23 @@ class TourOrderRowView extends GetView<TourOrderRowController> {
                   'emp_tra_id': controller.traId
                 });                
 
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.barcode_reader),
+              //tooltip: 'Show Snackbar',
+              onPressed: () {
+                //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                //    content: Text('This is a Appbar Icon example')));
+                /*
+                Get.offAndToNamed(Routes.TOURORDER, arguments: {
+                  'emp_tra_id': controller.traId
+                }); 
+                */
+                _showMyScannerForAllOrder(context,
+                  controller.ordId.toString(),
+                  controller.traId.toString(),
+                );
               },
             ),
           ]          
